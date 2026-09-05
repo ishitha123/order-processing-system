@@ -105,6 +105,7 @@ public class Main {
        */
 
        // Entering 0 for reduceStock() and increaseStock()
+       /* 
        Product p = new Product("Computer", new BigDecimal("2000"), 15);
        
        try{
@@ -112,7 +113,87 @@ public class Main {
        }catch(InsufficientStockException | IllegalArgumentException e){
         System.out.println(e.getMessage());
        }
-       
+       */
        //p.increaseStock(0); // should throw an error
+
+       //Testing successful order with multiple products
+       /* 
+       Order o = new Order();
+       Product p = new Product("Computer", new BigDecimal("1200"), 15);
+       Product p1 = new Product("Charger", new BigDecimal("100"), 20);
+       try{
+        o.addToOrder(p);
+       }catch(ProductAlreadyAddedException e){
+        System.out.println(e.getMessage());
+       }
+       try{
+        o.addToOrder(p1);
+       }catch(ProductAlreadyAddedException e){
+        System.out.println(e.getMessage());
+       }
+       OrderService ord = new OrderService();
+       try{
+        ord.placeOrder(o);
+       }catch(InsufficientStockException e){
+        System.out.println(e.getMessage());
+       }
+       System.out.println(p.getStock()); //Should display 14
+       System.out.println(p1.getStock()); //Should display 19
+       */
+      /* 
+       Order o = new Order();
+       Product p = new Product("Computer", new BigDecimal("1200"), 15);
+       Product p1 = new Product("Charger", new BigDecimal("100"), 20);
+       try{
+        o.addToOrder(p);
+       }catch(ProductAlreadyAddedException e){
+        System.out.println(e.getMessage());
+       }
+       try{
+        o.addToOrder(p1);
+       }catch(ProductAlreadyAddedException e){
+        System.out.println(e.getMessage());
+       }
+       try{
+        o.editQuantity(p, 15);
+       }catch(ProductNotFoundException | IllegalQuantityException | IllegalArgumentException e){
+        System.out.println(e.getMessage());
+       }
+       try{
+        o.editQuantity(p1, 21);
+       }catch(ProductNotFoundException | IllegalQuantityException | IllegalArgumentException e){
+        System.out.println(e.getMessage());
+       }
+       OrderService ord = new OrderService();
+       try{
+        ord.placeOrder(o);
+       }catch(InsufficientStockException e){
+        System.out.println(e.getMessage());
+       }
+       System.out.println(p.getStock()); //Should display 15
+       System.out.println(p1.getStock()); //Should display 20
+       */
+
+       //Testing placing an empty order
+       /* 
+       Order o = new Order();
+       OrderService ord = new OrderService();
+       try{
+        ord.placeOrder(o);
+       }catch(InsufficientStockException | IllegalStateException | IllegalArgumentException e){
+        System.out.println(e.getMessage()); //Should display an error message
+       }
+       */
+
+       //Testing placing a null order
+       /* 
+       Order o = null;
+       OrderService ord = new OrderService();
+       try{
+        ord.placeOrder(o);
+       }catch(InsufficientStockException | IllegalStateException | IllegalArgumentException e){
+        System.out.println(e.getMessage()); //Should display an error message
+       }
+       */
     }
 }
